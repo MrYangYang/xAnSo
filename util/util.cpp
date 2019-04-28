@@ -6,6 +6,7 @@
 
 #include "util.h"
 #include <fstream>
+#include <cstdlib>
 
 /******************************************************************************/
 
@@ -15,12 +16,18 @@
 std::string util::itoa(int i, int rdx)
 {
     char _rs[100] = {0};
-    ::_itoa_s(i, _rs, rdx);
-
+    assert(rdx == 8 || rdx == 10 || rdx == 16);
+    if (rdx == 8) {
+        snprintf(_rs, 99, "%o", i);
+    } else if (rdx == 10) {
+        snprintf(_rs, 99, "%d", i);
+    } else if (rdx == 16) {
+        snprintf(_rs, 99, "%x", i);
+    }
     return std::string(_rs);
 }
 
-std::string util::read_file(std::string file)
+std::string util::read_file(const std::string& file)
 {
     std::string file_content;
 

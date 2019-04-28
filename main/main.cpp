@@ -27,7 +27,8 @@ bool process_cmd(char *cmd){
     else if (!strcmp(cmd, "build-section")){
         printf("\t[-]input your file name:\n");
         char file_name[MAX_PATH] = { 0 };
-        scanf_s("%s", file_name, MAX_PATH);
+        int r = scanf("%s", file_name);
+        assert(r < MAX_PATH);
 
         //fix section
         section_fix fixer_;
@@ -58,7 +59,8 @@ int main(int argv, char **args)
         print_hello();
 
         char cmd_line[MAX_PATH] = { 0 };
-        scanf_s("%s", cmd_line, MAX_PATH);
+        int r = scanf("%s", cmd_line);
+        assert(r < MAX_PATH);
         if (!process_cmd(cmd_line)){
             break;
         }

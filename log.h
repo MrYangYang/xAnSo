@@ -7,8 +7,9 @@
 #ifndef LOG_8EC8D1A7_8377_42DC_9AB1_7775907F16EB_H__
 #define LOG_8EC8D1A7_8377_42DC_9AB1_7775907F16EB_H__
 
-#include <stdarg.h>
-#include <strsafe.h>
+#include <cstdarg>
+#include <string.h>
+#include <stdio.h>
 
 //common log
 #define INFO "INFO"

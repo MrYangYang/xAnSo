@@ -43,17 +43,17 @@ bool elf_header::from_string(std::string str_content)
 }
 
 static int GetTargetElfMachine() {
-#if defined(__arm__)
+//#if defined(__arm__)
     return EM_ARM;
-#elif defined(__aarch64__)
-    return EM_AARCH64;
-#elif defined(__i386__)
-    return EM_386;
-#elif defined(__mips__)
-    return EM_MIPS;
-#elif defined(__x86_64__)
-    return EM_X86_64;
-#endif
+//#elif defined(__aarch64__)
+//    return EM_AARCH64;
+//#elif defined(__i386__)
+//    return EM_386;
+//#elif defined(__mips__)
+//    return EM_MIPS;
+//#elif defined(__x86_64__)
+//    return EM_X86_64;
+//#endif
 
     return EM_ARM;
 }
