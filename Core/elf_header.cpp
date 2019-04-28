@@ -42,20 +42,12 @@ bool elf_header::from_string(std::string str_content)
     return is_valid();
 }
 
-static int GetTargetElfMachine() {
-//#if defined(__arm__)
-    return EM_ARM;
-//#elif defined(__aarch64__)
-//    return EM_AARCH64;
-//#elif defined(__i386__)
-//    return EM_386;
-//#elif defined(__mips__)
-//    return EM_MIPS;
-//#elif defined(__x86_64__)
-//    return EM_X86_64;
-//#endif
-
-    return EM_ARM;
+static bool isTargetElfMachineCompat(int target) {
+    return target == EM_ARM
+      || target == EM_AARCH64
+      || target == EM_386
+      || target == EM_MIPS
+      || target == EM_X86_64;
 }
 
 bool elf_header::is_valid()
@@ -94,7 +86,7 @@ bool elf_header::is_valid()
         return false;
     }
 
-    if (header_.e_machine != GetTargetElfMachine()) {
+    if (!isTargetElfMachineCompat(header_.e_machine)) {
         LOG(ERR, "elf header has unexpected e_machine: %d", header_.e_machine);
         return false;
     }
